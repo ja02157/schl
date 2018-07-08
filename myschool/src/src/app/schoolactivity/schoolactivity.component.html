@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title>
+    Angular Material Menu Demo
+  </mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      Open Menu
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onTest()">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item href="" routerLink="/about">
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item href="" routerLink="/personalInfo">
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+  </mat-card-content>
+</mat-card>
+<router-outlet></router-outlet>
