@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Address } from './address';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolServiceService {
 
-private heroesUrl = 'rs/save';
+private heroesUrl = '/myschool/rs/save';
 
   constructor(private http: HttpClient) { 
   	
   }
   
-  savePersonalInfo(adr: Address): void {
-  		this.http.get<Address>(this.heroesUrl);
-       console.log('test...');
-       alert("Hey Thanks : " + JSON.stringify(adr));
+  
+  
+  savePersonalInfo(adr: Address): Observable<any> {
+  
+  
+  const body = adr;
+  const headers = new HttpHeaders().set('Content-Type','application/json');
+  
+  		alert("Hey Thanks : " + JSON.stringify(adr.firstname));
+  	   return this.http.post<any>(this.heroesUrl, body, {headers: headers});
+       
+       
        
 }
 

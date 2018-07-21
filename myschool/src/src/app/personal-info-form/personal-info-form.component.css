@@ -8,11 +8,7 @@
   width: 100%;
 }
 
-mat-input-container label {
-  color: red;
-}
-
-/* When the input is focused */
-mat-input-container.mat-input-focused label {
-  color: blue;
+.mat-input-placeholder {
+    color: blue;
+    font-size: 2em;
 }

@@ -26,13 +26,18 @@ addr: Address = {
   }
   
   savePersonalInfo(adr: Address): void {
-    this.schoolServiceService.savePersonalInfo(adr);
+    this.schoolServiceService.savePersonalInfo(adr).subscribe(
+    
+    );
   }
   
   onSubmit() {
     
     alert("Thanks for submitting! Data: " + JSON.stringify(this.address));
     this.savePersonalInfo(this.address);
+    
+    
+    
   }
 
 }

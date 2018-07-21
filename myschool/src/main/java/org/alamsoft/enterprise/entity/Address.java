@@ -1,68 +1,49 @@
 package org.alamsoft.enterprise.entity;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
-@Table(name="PERSONALINFO")
-public class Address {
+@Table(name="Address", schema="PUBLIC")
+public class Address implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	public Address() {}
 
-	  long id;
-	String firstName;
-	String lastName;
-	String address;
-	String city;
-	String state;
-	String postalcode;
-	
 	@Id
-	@Column(name="id")
-	public long getId() {
-		return id;
+	@Column(name="emp_id")
+	long empid;
+	
+	String firstname;
+	String lastname;
+	
+	public long getEmpid() {
+		return empid;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setEmpid(long empid) {
+		this.empid = empid;
 	}
 	
-	public String getAddress() {
-		return address;
+	@Column(name="firstname")
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getPostalcode() {
-		return postalcode;
-	}
-	public void setPostalcode(String postalcode) {
-		this.postalcode = postalcode;
+	public void setFirstname(String firstName) {
+		this.firstname = firstName;
 	}
 	
-	
+	@Column(name="lastname")
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastName) {
+		this.lastname = lastName;
+	}
 }
 
