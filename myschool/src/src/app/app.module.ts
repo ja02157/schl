@@ -13,13 +13,15 @@ import { PersonalInfoFormComponent } from './personal-info-form/personal-info-fo
 import { SchoolactivityComponent } from './schoolactivity/schoolactivity.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { PersonlistComponent } from './personlist/personlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonalInfoFormComponent,
     SchoolactivityComponent,
-    AboutComponent
+    AboutComponent,
+    PersonlistComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,10 @@
 package org.alamsoft.enterprise.repositories;
 
-import javax.transaction.Transactional;
-
 import org.alamsoft.enterprise.entity.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface PersonalRepository extends JpaRepository<Address, Integer> {
-
+	@Query("select a from Address a")
+	  Address[] getAll();
 }

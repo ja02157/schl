@@ -8,7 +8,30 @@
   width: 100%;
 }
 
-.mat-input-placeholder {
-    color: blue;
-    font-size: 2em;
+.mat-input-element::placeholder {
+	color: rgb(193, 66, 66)
+}
+
+.mat-input-element::-moz-placeholder {
+	color: rgb(193, 66, 66)
+}
+
+.mat-input-element::-webkit-input-placeholder {
+	color: rgb(193, 66, 66)
+}
+
+.mat-input-element:-ms-input-placeholder {
+	color: rgb(193, 66, 66)
+}
+
+.mat-select-placeholder {
+	color: rgb(193, 66, 66)
+}
+
+.mat-select-disabled .mat-select-value {
+	color: rgba(193, 66, 66)
+}
+
+.mat-select-arrow {
+	color: rgba(193, 66, 66)
 }

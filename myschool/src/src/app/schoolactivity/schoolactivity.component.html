@@ -3,7 +3,7 @@
     Angular Material Menu Demo
   </mat-card-title>
   <mat-card-content>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+    <button mat-menu color="primary" [matMenuTriggerFor]="menu">
       Open Menu
     </button>
     <mat-menu #menu="matMenu">
@@ -18,6 +18,10 @@
       <button mat-menu-item href="" routerLink="/personalInfo">
         <mat-icon>notifications_off</mat-icon>
         <span>Disable alerts</span>
+      </button>
+      <button mat-menu-item href="" routerLink="/personlist">
+        <mat-icon>notifications_off</mat-icon>
+        <span>Person List</span>
       </button>
     </mat-menu>
   </mat-card-content>

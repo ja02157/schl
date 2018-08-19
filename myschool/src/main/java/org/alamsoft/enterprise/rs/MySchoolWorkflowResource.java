@@ -1,5 +1,7 @@
 package org.alamsoft.enterprise.rs;
 
+import java.util.List;
+
 import org.alamsoft.enterprise.entity.Address;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,14 @@ public class MySchoolWorkflowResource {
 	{
 		personalInfoServicesImpl.savePersonalInfo(personalInfo);
 		return personalInfo;
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public Address[] getPersonalInfo()
+	
+	{
+		Address[] listAddress = personalInfoServicesImpl.getPersonalInfo();
+		return listAddress;
 	}
 
 
