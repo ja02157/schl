@@ -17,6 +17,8 @@ addr: Address[] = [{
     firstname: 'Mr. Bad',
     lastname: 'Pervez'
   }];
+  
+  selectedAdr: Address;
 
   constructor(private schoolServiceService: SchoolServiceService ) {}
 
@@ -28,6 +30,10 @@ addr: Address[] = [{
     this.schoolServiceService.getPersonalInfo().subscribe(
     addr => this.addr = addr
     );
+  }
+  
+  onSelect(adr: Address): void {
+    this.selectedAdr = adr;
   }
 
 }

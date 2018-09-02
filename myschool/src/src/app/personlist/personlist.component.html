@@ -1,9 +1,10 @@
 
   
   <h2>My Heroes</h2>
-<ul>
+<ul class="addresses">
   
-  <li *ngFor="let adr of addr">
+  <li *ngFor="let adr of addr"
+    [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">
     <span>{{adr.empid}}</span> {{adr.firstname}} {{adr.lastname}}
   </li>
 </ul>

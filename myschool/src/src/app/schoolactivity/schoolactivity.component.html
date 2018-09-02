@@ -1,3 +1,4 @@
+<!--  
 <mat-card>
   <mat-card-title>
     Angular Material Menu Demo
@@ -26,4 +27,54 @@
     </mat-menu>
   </mat-card-content>
 </mat-card>
-<router-outlet></router-outlet>
+
+<div class="main-container">
+    <header class="header header-6">
+        Javed Alam
+    </header>
+    <div class="content-container">
+    <div class="content-area">
+            Content goes here
+     </div>
+     <nav class="subnav">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Management</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Cloud</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Tenants</a>
+        </li>
+    </ul>
+</nav>
+    </div>
+<</div>
+-->
+<div class="main-container">
+    <header class="header header-6">
+        Javed Alam
+    </header>
+    <nav class="subnav">
+       <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="/personalInfo">Enter Personal Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="/personlist">Personal Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#" routerLink="/about">About</a>
+        </li>
+    </ul>
+    </nav>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
