@@ -18,7 +18,8 @@ addr: Address[] = [{
     lastname: 'Pervez'
   }];
   
-  selectedAdr: Address;
+  selectedAdr: Address = {firstname: 'Mr. Bad',
+                        lastname: 'Pervez'};
 
   constructor(private schoolServiceService: SchoolServiceService ) {}
 

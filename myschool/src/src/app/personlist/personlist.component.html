@@ -1,11 +1,43 @@
 
-  
-  <h2>My Heroes</h2>
+    
+
+  <!-- 
 <ul class="addresses">
   
   <li *ngFor="let adr of addr"
     [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">
-    <span>{{adr.empid}}</span> {{adr.firstname}} {{adr.lastname}}
+    {{adr.firstname}} {{adr.lastname}}
   </li>
 </ul>
+-->
+ 
+<clr-datagrid>
+    <clr-dg-column>First Name</clr-dg-column>
+    <clr-dg-column>Last Name</clr-dg-column>
+    
+  <clr-dg-row *clrDgItems="let adr of addr" 
+  [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
+    <clr-dg-cell>{{adr.firstname}}</clr-dg-cell>
+    <clr-dg-cell>{{adr.lastname}}</clr-dg-cell>
+ </clr-dg-row> 
+<clr-dg-footer>
+ <clr-dg-pagination #pagination [clrDgPageSize]="4">
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} users
+    </clr-dg-pagination>
+</clr-dg-footer>
+</clr-datagrid>
+
+<clr-datagrid >
+    <clr-dg-column>First Name</clr-dg-column>
+    <clr-dg-column>Last Name</clr-dg-column>
+  
+  <clr-dg-row >  
+    <clr-dg-cell>{{selectedAdr.firstname}}</clr-dg-cell>
+    <clr-dg-cell>{{selectedAdr.lastname}}</clr-dg-cell>
+  </clr-dg-row> 
+    
+    <clr-dg-footer>Ha Ha Ha</clr-dg-footer>
+</clr-datagrid>
+
 
