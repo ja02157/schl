@@ -11,11 +11,19 @@
 </ul>
 -->
  
-<clr-datagrid>
-    <clr-dg-column>First Name</clr-dg-column>
+<clr-datagrid [(clrDgSelected)]="selected" [clrDgRowSelection]="true">
+
+<clr-dg-action-bar>
+        <div class="btn-group">
+            
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete(selected)" ><clr-icon shape="close"></clr-icon> Delete</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1"><clr-icon shape="pencil"></clr-icon> Edit</button>
+        </div>
+</clr-dg-action-bar>
+    <clr-dg-column>First Name2</clr-dg-column>
     <clr-dg-column>Last Name</clr-dg-column>
     
-  <clr-dg-row *clrDgItems="let adr of addr" 
+  <clr-dg-row *clrDgItems="let adr of addr" [clrDgItem]="adr" 
   [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
     <clr-dg-cell>{{adr.firstname}}</clr-dg-cell>
     <clr-dg-cell>{{adr.lastname}}</clr-dg-cell>
