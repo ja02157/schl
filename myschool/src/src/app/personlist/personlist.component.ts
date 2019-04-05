@@ -37,6 +37,7 @@ addr: Address[] = [{
   }
   
   onSelect(adr: Address): void {
+  
     this.selectedAdr = adr;
   }
   onDelete(adr: Address): void {
