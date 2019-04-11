@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PersonlistComponent } from './personlist/personlist.component';
 import { ClarityModule } from '@clr/angular';
+import { EntryComponent } from './entry/entry.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ClarityModule } from '@clr/angular';
     PersonalInfoFormComponent,
     SchoolactivityComponent,
     AboutComponent,
-    PersonlistComponent
+    PersonlistComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
