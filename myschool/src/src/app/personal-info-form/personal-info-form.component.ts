@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
+import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 /*import {MatFormFieldModule} from '@angular/material/form-field';*/
 /* testing */
 
@@ -22,9 +24,14 @@ addr: Address = {
   };
   
 
-  constructor(private schoolServiceService: SchoolServiceService) { }
+  constructor(private schoolServiceService: SchoolServiceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+  this.schoolServiceService.eAdr.subscribe(data => {
+  alert("oH mY: " +JSON.stringify(data));
+  this.address = data;
+  //do what ever needs doing when data changes
+   })
   }
   
   savePersonalInfo(adr: Address): void {
@@ -34,12 +41,14 @@ addr: Address = {
   }
   
   onSubmit() {
-    
-    alert("Thanks for submitting! Data: " + JSON.stringify(this.address));
+   
     this.savePersonalInfo(this.address);
+    this.router.navigate(['/entry']);
     
-    
-    
+  }
+  
+  onCancel() {
+    this.router.navigate(['/entry']);
   }
 
 }

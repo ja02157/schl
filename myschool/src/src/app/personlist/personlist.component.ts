@@ -40,6 +40,7 @@ addr: Address[] = [{
   
     this.selectedAdr = adr;
   }
+  
   onDelete(adr: Address): void {
   this.router.navigate(['/about']);
    

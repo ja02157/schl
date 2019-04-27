@@ -1,6 +1,5 @@
 package org.alamsoft.enterprise.rs;
 
-import java.util.List;
 //test
 import org.alamsoft.enterprise.entity.Address;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
@@ -12,31 +11,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MySchoolWorkflowResource {
-	
+
 	@Autowired
-	PersonalInfoServicesImpl personalInfoServicesImpl;	
-	
+	PersonalInfoServicesImpl personalInfoServicesImpl;
+
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String pingServer()
-	{
+	public String pingServer() {
 		return "I am alive";
 	}
-	
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public Address savePersonalInfo(@RequestBody Address personalInfo)
-	
+
 	{
 		personalInfoServicesImpl.savePersonalInfo(personalInfo);
 		return personalInfo;
 	}
-	
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public Address deletePersonalInfo(@RequestBody Address personalInfo)
+
+	{
+		personalInfoServicesImpl.deletePersonalInfo(personalInfo);
+		return personalInfo;
+	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public Address[] getPersonalInfo()
-	
+
 	{
 		Address[] listAddress = personalInfoServicesImpl.getPersonalInfo();
 		return listAddress;
 	}
-
 
 }
