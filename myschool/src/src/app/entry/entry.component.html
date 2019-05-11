@@ -1,0 +1,26 @@
+<clr-datagrid [(clrDgSelected)]="selected" [clrDgRowSelection]="true">
+
+<clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()" ><clr-icon shape="close"></clr-icon> Add</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" ><clr-icon shape="close"></clr-icon> Delete</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1"><clr-icon shape="pencil"></clr-icon> Edit</button>
+        </div>
+</clr-dg-action-bar>
+
+    <clr-dg-column>First Name</clr-dg-column>
+    <clr-dg-column>Last Name</clr-dg-column>
+    
+    <clr-dg-row *clrDgItems="let adr of addr"  [clrDgItem]="adr" 
+  [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
+    <clr-dg-cell>{{adr.firstname}}</clr-dg-cell>
+    <clr-dg-cell>{{adr.lastname}}</clr-dg-cell>
+ </clr-dg-row>
+ <clr-dg-footer>
+ <clr-dg-pagination #pagination [clrDgPageSize]="4">
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} users
+    </clr-dg-pagination>
+</clr-dg-footer>
+
+</clr-datagrid>
