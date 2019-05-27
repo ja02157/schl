@@ -29,8 +29,12 @@ public class PersonalInfoServicesImpl {
 
 	}
 
-	public Address[] getPersonalInfo() {
+	public Address[] getAllPersonalInfo() {
 		return personalInfoRepository.getAll();
+	}
+	
+	public Address getPersonalInfo(String empId) {
+		return personalInfoRepository.findById(empId).get();
 	}
 
 }

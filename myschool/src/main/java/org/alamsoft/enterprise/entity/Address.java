@@ -15,18 +15,22 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public Address() {}
-
-	@Id
-	@Column(name="emp_id")
-	long empid;
 	
 	String firstname;
 	String lastname;
+	String password;
+	String role;
+	String token;
 	
-	public long getEmpid() {
+
+	@Id
+	@Column(name="emp_id")
+	String empid;
+	
+	public String getEmpid() {
 		return empid;
 	}
-	public void setEmpid(long empid) {
+	public void setEmpid(String empid) {
 		this.empid = empid;
 	}
 	
@@ -44,6 +48,31 @@ public class Address implements Serializable {
 	}
 	public void setLastname(String lastName) {
 		this.lastname = lastName;
+	}
+	
+	@Column(name="role")
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	@Column(name="password")
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@Column(name="token")
+	public String getToken() {
+		return token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
 	}
 }
 

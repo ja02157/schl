@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 /* testing */
 
 import { Address } from '../address';
-import { SchoolServiceService } from '../school-service.service';
+import { SchoolServiceService } from '../services/school-service.service';
 
 
 @Component({

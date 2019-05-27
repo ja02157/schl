@@ -1,5 +1,7 @@
 package org.alamsoft.enterprise.rs;
 
+import java.util.Map;
+
 //test
 import org.alamsoft.enterprise.entity.Address;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
@@ -18,6 +20,22 @@ public class MySchoolWorkflowResource {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String pingServer() {
 		return "I am alive";
+	}
+	
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	public Address authenticate(@RequestBody Map<String, String> json) throws Error {
+		Address returnAddress=null;
+		Address address = personalInfoServicesImpl.getPersonalInfo(json.get("username"));
+		if (address.getPassword().equals(json.get("password"))) {
+			returnAddress = address;
+			String token= "fake-jwt-token."+returnAddress.getRole();
+			returnAddress.setToken(token);
+		} else {
+			
+			throw new Error("user id or password doesnt match");
+		}
+		
+		return returnAddress;
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -40,7 +58,7 @@ public class MySchoolWorkflowResource {
 	public Address[] getPersonalInfo()
 
 	{
-		Address[] listAddress = personalInfoServicesImpl.getPersonalInfo();
+		Address[] listAddress = personalInfoServicesImpl.getAllPersonalInfo();
 		return listAddress;
 	}
 

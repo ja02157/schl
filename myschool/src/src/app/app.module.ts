@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 /*import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';*/
 import { HttpClientModule }    from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 import 'hammerjs';
 
@@ -16,6 +18,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PersonlistComponent } from './personlist/personlist.component';
 import { ClarityModule } from '@clr/angular';
 import { EntryComponent } from './entry/entry.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,11 +28,13 @@ import { EntryComponent } from './entry/entry.component';
     SchoolactivityComponent,
     AboutComponent,
     PersonlistComponent,
-    EntryComponent
+    EntryComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
 /*    MatInputModule,
     MatButtonModule,
@@ -39,7 +45,9 @@ import { EntryComponent } from './entry/entry.component';
     HttpClientModule,
     ClarityModule
   ],
-  providers: [],
+  providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
