@@ -18,7 +18,7 @@ currentUser: Address;
         private router: Router,
         private authenticationService: AuthenticationService
     ) { 
-        debugger
+        
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 

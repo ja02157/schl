@@ -20,6 +20,7 @@ import { ClarityModule } from '@clr/angular';
 import { EntryComponent } from './entry/entry.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     PersonlistComponent,
     EntryComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClarityModule
   ],
   providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
              ],
   bootstrap: [AppComponent]
 })

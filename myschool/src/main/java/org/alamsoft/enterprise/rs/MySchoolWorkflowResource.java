@@ -2,6 +2,7 @@ package org.alamsoft.enterprise.rs;
 
 import java.util.Map;
 
+import org.alamsoft.enterprise.bootstrap.AuthenticationFailed;
 //test
 import org.alamsoft.enterprise.entity.Address;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
@@ -31,8 +32,7 @@ public class MySchoolWorkflowResource {
 			String token= "fake-jwt-token."+returnAddress.getRole();
 			returnAddress.setToken(token);
 		} else {
-			
-			throw new Error("user id or password doesnt match");
+			throw new AuthenticationFailed("user id or password doesnt match");
 		}
 		
 		return returnAddress;
