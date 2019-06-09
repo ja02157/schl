@@ -25,6 +25,7 @@ export class AppComponent {
     }
     
     get isAdmin() {
+    debugger
         return this.currentUser && this.currentUser.role === Role.Admin;
     }
     

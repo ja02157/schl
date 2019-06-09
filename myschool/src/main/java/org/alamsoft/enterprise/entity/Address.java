@@ -1,17 +1,18 @@
 package org.alamsoft.enterprise.entity;
-import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
 @Table(name="Address", schema="PUBLIC")
-public class Address implements Serializable {
+public class Address implements  UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	public Address() {}
@@ -25,14 +26,20 @@ public class Address implements Serializable {
 
 	@Id
 	@Column(name="emp_id")
-	String empid;
+	String username;
 	
-	public String getEmpid() {
-		return empid;
+	
+	
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public void setEmpid(String empid) {
-		this.empid = empid;
-	}
+//	public String getEmpid() {
+//		return username;
+//	}
+//	public void setEmpid(String empid) {
+//		this.username = empid;
+//	}
 	
 	@Column(name="firstname")
 	public String getFirstname() {
@@ -73,6 +80,36 @@ public class Address implements Serializable {
 	
 	public void setToken(String token) {
 		this.token = token;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.username;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
 

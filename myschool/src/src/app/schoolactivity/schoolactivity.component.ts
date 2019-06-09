@@ -25,6 +25,11 @@ currentUser: Address;
   ngOnInit() {
   }
   
+  get isAdmin() {
+        debugger
+        return this.currentUser && this.currentUser.role === Role.Admin;
+    }
+  
   onTest(): void {
         console.log('Hi There');
 }

@@ -3,5 +3,6 @@ export class Address {
     public firstname?: string,
     public lastname?: string,
     public role?: string,
+    public token?: string,
   ) {}
 }

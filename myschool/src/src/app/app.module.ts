@@ -7,7 +7,7 @@ import { MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';
 import { HttpClientModule }    from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
-
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -48,6 +48,7 @@ import { HomeComponent } from './home/home.component';
     ClarityModule
   ],
   providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
              ],
   bootstrap: [AppComponent]

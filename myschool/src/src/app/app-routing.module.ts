@@ -8,14 +8,16 @@ import { PersonalInfoFormComponent }      from './personal-info-form/personal-in
 import { PersonlistComponent }      from './personlist/personlist.component';
 import { LoginComponent }      from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { Role } from './role';
 
 const routes: Routes = [
    { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
-  { path: 'entry', component: EntryComponent },
-  { path: 'personalInfo/:addr', component: PersonalInfoFormComponent },
-  { path: 'personalInfo', component: PersonalInfoFormComponent },
-  { path: 'personlist', component: PersonlistComponent },
+  { path: 'entry', component: EntryComponent , canActivate: [AuthGuard],
+        data: { roles: [Role.Admin] }},
+  { path: 'personalInfo/:addr', component: PersonalInfoFormComponent, canActivate: [AuthGuard] },
+  { path: 'personalInfo', component: PersonalInfoFormComponent, canActivate: [AuthGuard] },
+  { path: 'personlist', component: PersonlistComponent , canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: '**', redirectTo: '' }
   

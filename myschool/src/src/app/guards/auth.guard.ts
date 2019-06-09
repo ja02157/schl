@@ -3,6 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { AuthenticationService } from '../services/authentication.service';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
     constructor(
@@ -16,6 +17,7 @@ export class AuthGuard implements CanActivate {
         debugger
         if (currentUser) {
             // check if route is restricted by role
+            debugger
             if (route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
                 // role not authorised so redirect to home page
                 this.router.navigate(['/']);
