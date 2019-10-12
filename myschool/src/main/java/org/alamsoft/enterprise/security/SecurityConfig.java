@@ -23,15 +23,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.csrf().disable().authorizeRequests().antMatchers("/*").permitAll().and().apply(new JwtConfigurer(jwtTokenProvider));
-        //@formatter:off
-//        http
+    	//Object b = http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/list/**").hasRole("USER");
+    	http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("ADMIN").and().apply(new JwtConfigurer(jwtTokenProvider));
+    	//http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("USER").anyRequest().authenticated();
+
+    	//@formatter:off
+    	
+    	
+//        http.csrf().disable()
 //            .httpBasic()
 //            .and()
 //                .authorizeRequests()
-//                .antMatchers("*").permitAll()
+//                .antMatchers("/login")..hasRole("admin")
 //               // .antMatchers(HttpMethod.GET, "/vehicles/**").
-//                .antMatchers(HttpMethod.GET, "/list/**").hasRole("admin")
+//                .antMatchers(HttpMethod.GET, "/list").hasRole("admin")
 ////                .antMatchers(HttpMethod.GET, "/v1/vehicles/**").permitAll()
 //                .anyRequest().authenticated()
 //            .and()
