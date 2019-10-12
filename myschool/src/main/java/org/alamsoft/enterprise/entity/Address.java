@@ -1,5 +1,7 @@
 package org.alamsoft.enterprise.entity;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 
 @Entity
@@ -83,9 +87,13 @@ public class Address implements  UserDetails {
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		List<GrantedAuthority> grantedAuths =
+                AuthorityUtils.commaSeparatedStringToAuthorityList(getRole());
+		return grantedAuths;
+		}
+	
+
+	
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
