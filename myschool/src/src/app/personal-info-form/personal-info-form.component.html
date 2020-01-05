@@ -1,18 +1,21 @@
 <h3>Address Form</h3>
-
 <form (ngSubmit)="onSubmit()" #myForm="ngForm">
     <section class="form-block">
         <div class="form-group">
             <label for="empid">Employee ID</label>
-            <input type="text" id="empid" placeholder="Employee ID" [(ngModel)]="address.empid" name="empid" size="35">
+            <input type="text" id="empid" placeholder="Employee ID" [(ngModel)]="address.username" name="empid" size="35">
+         </div> 
+         <div class="form-group">
+            <label for="empidx">Employee ID</label>
+            <input type="text" id="empidx" placeholder="Employee ID" [(ngModel)]="address.userInformation.username" name="empid" size="35">
          </div> 
          <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="text" id="firstname" placeholder="First Name" [(ngModel)]="address.firstname" name="firstname" size="35">
+            <input type="text" id="firstname" placeholder="First Name" [(ngModel)]="address.userInformation.firstname" name="firstname" size="35">
          </div>
          <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="text" id="lastname" placeholder="Last Name" [(ngModel)]="address.lastname" name="lastname" size="35">
+            <input type="text" id="lastname" placeholder="Last Name" [(ngModel)]="address.userInformation.lastname" name="lastname" size="35">
          </div>  
     </section>
     <p>

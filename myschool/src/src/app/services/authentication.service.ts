@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Address } from '../address';
+import { UserIdentity } from '../useridentity';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -10,15 +10,17 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
     private authenticationUrl = '/myschool/rs/authenticate';
-    private currentUserSubject: BehaviorSubject<Address>;
-    public currentUser: Observable<Address>;
+    private currentUserSubject: BehaviorSubject<UserIdentity>;
+    public currentUser: Observable<UserIdentity>;
 
   constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<Address>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<UserIdentity>(JSON.parse(localStorage.getItem('currentUser')));
+        debugger
         this.currentUser = this.currentUserSubject.asObservable();
+        debugger
   }
   
-  public get currentUserValue(): Address {
+  public get currentUserValue(): UserIdentity {
         return this.currentUserSubject.value;
     }
 
@@ -33,7 +35,7 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-
+                debugger
                 return user;
             }))
         

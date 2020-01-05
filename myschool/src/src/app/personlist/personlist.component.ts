@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Address } from '../address';
+import { UserIdentity } from '../useridentity';
+import { UserInformation } from '../userinformation';
 import {Router} from '@angular/router';
 import { SchoolServiceService } from '../services/school-service.service';
 
@@ -12,21 +13,22 @@ import { SchoolServiceService } from '../services/school-service.service';
 export class PersonlistComponent implements OnInit {
 
 selected = [];
-addr: Address[] = [{
-    firstname: 'Mr. Nice',
-    lastname: 'Alam'
-  },
-  {
-    firstname: 'Mr. Bad',
-    lastname: 'Pervez'
+addr: UserIdentity[] = [{
+    username: 'jack',
+    userInformation: {
+    firstname: 'maha',
+    lastname: 'rushda'
+    }
   }];
   
-  selectedAdr: Address = {firstname: 'Mr. Bad',
-                        lastname: 'Pervez'};
+  selectedAdr: UserIdentity = {username: 'jack',
+                        userInformation: {}
+                              };
 
   constructor(private schoolServiceService: SchoolServiceService, private router: Router) {}
 
   ngOnInit() {
+  debugger
   this.getPersonalInfo();
   }
   
@@ -36,17 +38,17 @@ addr: Address[] = [{
     );
   }
   
-  onSelect(adr: Address): void {
+  onSelect(adr: UserIdentity): void {
   
     this.selectedAdr = adr;
   }
   
-  onDelete(adr: Address): void {
+  onDelete(adr: UserIdentity): void {
   this.router.navigate(['/about']);
    
     
   }
-  onEdit(adr: Address): void {
+  onEdit(adr: UserIdentity): void {
     alert('how ho');
   }
 

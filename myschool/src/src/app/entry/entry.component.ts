@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Address } from '../address';
+import { UserIdentity } from '../useridentity';
+import { UserInformation } from '../userinformation';
 import {Router} from '@angular/router';
 import { SchoolServiceService } from '../services/school-service.service';
 
@@ -12,15 +13,14 @@ import { SchoolServiceService } from '../services/school-service.service';
 export class EntryComponent implements OnInit {
 
 selected = [];
-selectedAdr: Address;
+selectedAdr: UserIdentity;
 
-addr: Address[] = [{
-    firstname: 'Mr. Nice',
-    lastname: 'Alam'
-  },
-  {
-    firstname: 'Mr. Bad',
-    lastname: 'Pervez'
+addr: UserIdentity[] = [{
+    username: 'jack',
+    userInformation: {
+    firstname: 'maha',
+    lastname: 'rushda'
+    }
   }];
 
   constructor(private schoolServiceService: SchoolServiceService, private router: Router) { }
@@ -42,7 +42,7 @@ addr: Address[] = [{
     
   }
   
-  onSelect(adr: Address): void {
+  onSelect(adr: UserIdentity): void {
   
     this.selectedAdr = adr;
   }

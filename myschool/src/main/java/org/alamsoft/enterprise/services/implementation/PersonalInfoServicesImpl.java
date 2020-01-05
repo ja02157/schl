@@ -1,6 +1,6 @@
 package org.alamsoft.enterprise.services.implementation;
 
-import org.alamsoft.enterprise.entity.Address;
+import org.alamsoft.enterprise.entity.UserIdentity;
 import org.alamsoft.enterprise.repositories.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,28 +13,28 @@ public class PersonalInfoServicesImpl {
 	@Autowired
 	PersonalRepository personalInfoRepository;
 
-	public void savePersonalInfo(Address address) {
+	public void savePersonalInfo(UserIdentity address) {
 		personalInfoRepository.saveAndFlush(address);
 
 	}
 
-	public void deletePersonalInfo(Address address) {
+	public void deletePersonalInfo(UserIdentity address) {
 		// address.setEmpid(24);
 		personalInfoRepository.delete(address);
 
 	}
 
-	public void editPersonalInfo(Address address) {
+	public void editPersonalInfo(UserIdentity address) {
 		savePersonalInfo(address);
 
 	}
 
-	public Address[] getAllPersonalInfo() {
+	public UserIdentity[] getAllPersonalInfo() {
 		return personalInfoRepository.getAll();
 	}
 	
-	public Address getPersonalInfo(String empId) {
-		return personalInfoRepository.findById(empId).get();
+	public UserIdentity getPersonalInfo(String empId) {
+		return personalInfoRepository.findByUsername(empId).get();
 	}
 
 }

@@ -26,12 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	//Object b = http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/list/**").hasRole("USER");
     	http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("ADMIN").and().apply(new JwtConfigurer(jwtTokenProvider));
     	//http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("USER").anyRequest().authenticated();
+    	//http.csrf().disable().authorizeRequests().and().apply(new JwtConfigurer(jwtTokenProvider));
 
     	//@formatter:off
     	
     	
-//        http.csrf().disable()
-//            .httpBasic()
+ //       http.csrf().disable()
+ //           .httpBasic()
 //            .and()
 //                .authorizeRequests()
 //                .antMatchers("/login")..hasRole("admin")

@@ -13,8 +13,8 @@
     
     <clr-dg-row *clrDgItems="let adr of addr"  [clrDgItem]="adr" 
   [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
-    <clr-dg-cell>{{adr.firstname}}</clr-dg-cell>
-    <clr-dg-cell>{{adr.lastname}}</clr-dg-cell>
+    <clr-dg-cell>{{adr.userInformation.firstname}}</clr-dg-cell>
+    <clr-dg-cell>{{adr.userInformation.lastname}}</clr-dg-cell>
  </clr-dg-row>
  <clr-dg-footer>
  <clr-dg-pagination #pagination [clrDgPageSize]="4">

@@ -1,14 +1,16 @@
 package org.alamsoft.enterprise.rs;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 //test
-import org.alamsoft.enterprise.entity.Address;
+import org.alamsoft.enterprise.entity.UserIdentity;
+import org.alamsoft.enterprise.entity.UserInformation;
+import org.alamsoft.enterprise.entity.UserRoles;
 import org.alamsoft.enterprise.security.JwtTokenProvider;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,13 +35,18 @@ public class MySchoolWorkflowResource {
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public Address authenticate(@RequestBody Map<String, String> json) throws Error {
-		Address returnAddress=null;
-		Address address = personalInfoServicesImpl.getPersonalInfo(json.get("username"));
+	public UserIdentity authenticate(@RequestBody Map<String, String> json) throws Error {
+		UserIdentity returnAddress=null;
+		UserIdentity address = personalInfoServicesImpl.getPersonalInfo(json.get("username"));
 		//
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(json.get("username"), json.get("password")));
 		ArrayList<String> rl=new ArrayList();
-		rl.add(address.getRole());
+		//rl.add(address.getUserInformation().getRole());
+		Iterator<UserRoles> iter = address.getUserRoles().iterator();
+		while (iter.hasNext()) {
+			rl.add(iter.next().getRole().getRoleName());
+		}
+		
 		String tokenx = jwtTokenProvider.createToken(json.get("username"), rl);
 		
 		//
@@ -57,7 +64,7 @@ public class MySchoolWorkflowResource {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Address savePersonalInfo(@RequestBody Address personalInfo)
+	public UserIdentity savePersonalInfo(@RequestBody UserIdentity personalInfo)
 
 	{
 		personalInfoServicesImpl.savePersonalInfo(personalInfo);
@@ -65,7 +72,7 @@ public class MySchoolWorkflowResource {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public Address deletePersonalInfo(@RequestBody Address personalInfo)
+	public UserIdentity deletePersonalInfo(@RequestBody UserIdentity personalInfo)
 
 	{
 		personalInfoServicesImpl.deletePersonalInfo(personalInfo);
@@ -73,10 +80,11 @@ public class MySchoolWorkflowResource {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public Address[] getPersonalInfo()
+	public UserIdentity[] getPersonalInfo()
 
 	{
-		Address[] listAddress = personalInfoServicesImpl.getAllPersonalInfo();
+		UserIdentity[] listAddress = personalInfoServicesImpl.getAllPersonalInfo();
+		//listAddress[0].getUserInformation().get
 		return listAddress;
 	}
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Address } from '../address';
+import { UserIdentity } from '../useridentity';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -15,9 +15,17 @@ export class SchoolServiceService {
 private saveUrl = '/myschool/rs/save';
 private listUrl = '/myschool/rs/list';
 private deleteUrl = '/myschool/rs/delete';
-editAddr: Address;
+editAddr: UserIdentity;
 
-private dataSource = new BehaviorSubject(new Address());
+tobj: UserIdentity = {
+    username: '',
+    userInformation: {
+    firstname: '',
+    lastname: ''
+    }
+  }; 
+
+private dataSource = new BehaviorSubject(this.tobj);
   eAdr = this.dataSource.asObservable();
 
 
@@ -25,38 +33,38 @@ private dataSource = new BehaviorSubject(new Address());
   	
   }
   
-  updatedDataSelection(eAdr: Address) {
+  updatedDataSelection(eAdr: UserIdentity) {
     this.dataSource.next(eAdr);
   }
   
-  savePersonalInfo(adr: Address): Observable<any> {
+  savePersonalInfo(adr: UserIdentity): Observable<any> {
   
   const body = adr;
   
   const headers = new HttpHeaders().set('Content-Type','application/json');
   
-  		alert("Hey Thanks : " + JSON.stringify(adr.firstname));
+  		alert("Hey Thanks : " + JSON.stringify(adr.userInformation.firstname));
   	   return this.http.post<any>(this.saveUrl, body, {headers: headers});      
 	}
 	
-	deletePersonalInfo(adr: Address): Observable<any> {
+	deletePersonalInfo(adr: UserIdentity): Observable<any> {
   
   const body = adr;
   
   const headers = new HttpHeaders().set('Content-Type','application/json');
   
-  		alert("Hey Thanks : " + JSON.stringify(adr.firstname));
+  		alert("Hey Thanks : " + JSON.stringify(adr.userInformation.firstname));
   		
   	   return this.http.post<any>(this.deleteUrl, body, {headers: headers});      
 	}
 	
   
-  getPersonalInfo(): Observable<Address[]>  {
+  getPersonalInfo(): Observable<UserIdentity[]>  {
   
   const body = {};
   const headers = new HttpHeaders().set('Content-Type','application/json');
   
-  	    return this.http.get<Address[]>(this.listUrl);
+  	    return this.http.get<UserIdentity[]>(this.listUrl);
 }
   	   
 

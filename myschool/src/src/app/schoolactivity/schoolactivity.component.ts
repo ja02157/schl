@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Address } from '../address';
+import { UserIdentity } from '../useridentity';
 import { Router } from '@angular/router';
-import { Role } from '../role';
+import { RoleConstants } from '../roleconstants';
 import { AuthenticationService } from '../services/authentication.service';
+import { Utility } from '../utility';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./schoolactivity.component.css']
 })
 export class SchoolactivityComponent implements OnInit {
-currentUser: Address;
+currentUser: UserIdentity;
 
   constructor(
         
@@ -24,10 +25,12 @@ currentUser: Address;
 
   ngOnInit() {
   }
+    
   
-  get isAdmin() {
-        debugger
-        return this.currentUser && this.currentUser.role === Role.Admin;
+  get isAdmin() { 
+               
+        //return this.currentUser && this.currentUser.role.indexOf(Role.Admin) !== -1;
+        return this.currentUser && Utility.isRole(this.currentUser, RoleConstants.Admin);
     }
   
   onTest(): void {

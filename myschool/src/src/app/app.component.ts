@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 import { AuthenticationService } from './services/authentication.service';
-import { Address } from './address';
+import { UserIdentity } from './useridentity';
 import { Router } from '@angular/router';
-import { Role } from './role';
+import { RoleConstants } from './roleconstants';
+import { Utility } from './utility';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Role } from './role';
 })
 export class AppComponent {
   title = 'app';
-  currentUser: Address;
+  currentUser: UserIdentity;
   
   constructor(
         
@@ -24,9 +25,13 @@ export class AppComponent {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
     
+
+    
     get isAdmin() {
     debugger
-        return this.currentUser && this.currentUser.role === Role.Admin;
+        // return this.currentUser && this.currentUser.role === RoleConstants.Admin;
+        //return this.currentUser && this.currentUser.role === RoleConstants.Admin;
+        return this.currentUser && Utility.isRole(this.currentUser, RoleConstants.Admin);
     }
     
     logout() {
