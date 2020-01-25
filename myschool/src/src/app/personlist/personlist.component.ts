@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserIdentity } from '../useridentity';
-import { UserInformation } from '../userinformation';
+import { UserInformation } from 'app/userinformation';
 import {Router} from '@angular/router';
 import { SchoolServiceService } from '../services/school-service.service';
 

@@ -3,6 +3,7 @@ import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserIdentity } from '../useridentity';
+import { UserRole } from '../userrole';
 import { UserInformation } from '../userinformation';
 /*import {MatFormFieldModule} from '@angular/material/form-field';*/
 /* testing */
@@ -35,6 +36,10 @@ addr: UserIdentity = {
     }
   }; 
   
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  
 
   constructor(private schoolServiceService: SchoolServiceService, private router: Router, private route: ActivatedRoute) { }
   debugger
@@ -45,10 +50,39 @@ addr: UserIdentity = {
   alert("oH mY: " +JSON.stringify(data));
   debugger
   this.address = data;
+  
   debugger
   alert("oH mY:--> ");
+  this.getAllRoles();
   //do what ever needs doing when data changes
    })
+    
+  //  this.dropdownList = [
+  //    { id: 1, text: 'Barbecue' },
+  //    { id: 2, text: 'Mustard' },
+  //    { id: 3, text: 'Ketchup' },
+  //    { id: 4, text: 'Mayonaise' }
+  //  ];
+  //  this.selectedItems = [
+  //    { id: 1, text: 'Barbecue' },
+  //    { id: 2, text: 'Mustard' }
+  //  ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'roleId',
+      textField: 'roleName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true,
+      limitSelection: 2
+    };
+ 
+  }
+  getAllRoles(): void  {
+    this.schoolServiceService.getRoles().subscribe(
+    dropdownList => this.dropdownList = dropdownList
+    );
   }
   
   savePersonalInfo(adr: UserIdentity): void {
@@ -58,7 +92,18 @@ addr: UserIdentity = {
   }
   
   onSubmit() {
-   
+    this.address.userInformation.username = this.address.username;
+    let sel = this.selectedItems;
+    alert("oH mY:--> " +sel);
+    debugger
+    let rand:Array<UserRole>  = new Array<UserRole>()
+    for (let usrRole of this.selectedItems) {
+    let userR = new UserRole(this.address.username,usrRole);
+    rand.push(userR)
+     }
+    
+    this.address.userRoles = rand;
+    debugger
     this.savePersonalInfo(this.address);
     this.router.navigate(['/entry']);
     

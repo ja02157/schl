@@ -13,6 +13,10 @@ import javax.persistence.Table;
 public class UserRoles {
 	private static final long serialVersionUID = 1L;
 	
+	public UserRoles(String userName, String roleId) {
+		userRoleId = new UserRoleId(userName, roleId);
+	}
+	
 	@EmbeddedId
     private UserRoleId userRoleId;
 	

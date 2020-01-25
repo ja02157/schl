@@ -32,10 +32,11 @@ export class AuthGuard implements CanActivate {
 
             // authorised so return true
             if (route.data.roles && !Utility.isUserAllowed(currentUser, route.data.roles))  {
+               debugger
                this.router.navigate(['/']);
                 return false;
             }
-            
+            debugger
             return true;
         }
 

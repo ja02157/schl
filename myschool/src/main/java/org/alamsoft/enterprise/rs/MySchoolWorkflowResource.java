@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.alamsoft.enterprise.entity.Roles;
 //test
 import org.alamsoft.enterprise.entity.UserIdentity;
+import org.alamsoft.enterprise.entity.UserIdentityVO;
 import org.alamsoft.enterprise.entity.UserInformation;
 import org.alamsoft.enterprise.entity.UserRoles;
 import org.alamsoft.enterprise.security.JwtTokenProvider;
 import org.alamsoft.enterprise.services.implementation.PersonalInfoServicesImpl;
+import org.alamsoft.enterprise.services.implementation.RolesServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +26,9 @@ public class MySchoolWorkflowResource {
 
 	@Autowired
 	PersonalInfoServicesImpl personalInfoServicesImpl;
+	
+	@Autowired
+	RolesServicesImpl rolesServicesImpl;
 	
 	@Autowired
     AuthenticationManager authenticationManager;
@@ -64,11 +70,11 @@ public class MySchoolWorkflowResource {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public UserIdentity savePersonalInfo(@RequestBody UserIdentity personalInfo)
+	public void savePersonalInfo(@RequestBody UserIdentityVO personalInfo)
 
 	{
 		personalInfoServicesImpl.savePersonalInfo(personalInfo);
-		return personalInfo;
+		//return personalInfo;
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -84,8 +90,15 @@ public class MySchoolWorkflowResource {
 
 	{
 		UserIdentity[] listAddress = personalInfoServicesImpl.getAllPersonalInfo();
-		//listAddress[0].getUserInformation().get
 		return listAddress;
+	}
+	
+	@RequestMapping(value = "/listRoles", method = RequestMethod.GET)
+	public Roles[] getRoles()
+
+	{
+		Roles[] listRoles = rolesServicesImpl.getAllRoles();
+		return listRoles;
 	}
 
 }

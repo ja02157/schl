@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserIdentity } from '../useridentity';
+import { Roles } from '../roles';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -14,6 +15,7 @@ export class SchoolServiceService {
 
 private saveUrl = '/myschool/rs/save';
 private listUrl = '/myschool/rs/list';
+private listRolesUrl = '/myschool/rs/listRoles';
 private deleteUrl = '/myschool/rs/delete';
 editAddr: UserIdentity;
 
@@ -65,6 +67,14 @@ private dataSource = new BehaviorSubject(this.tobj);
   const headers = new HttpHeaders().set('Content-Type','application/json');
   
   	    return this.http.get<UserIdentity[]>(this.listUrl);
+}
+
+getRoles(): Observable<Roles[]>  {
+  
+  const body = {};
+  const headers = new HttpHeaders().set('Content-Type','application/json');
+  
+  	    return this.http.get<Roles[]>(this.listRolesUrl);
 }
   	   
 

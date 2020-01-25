@@ -21,6 +21,7 @@ import { EntryComponent } from './entry/entry.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HomeComponent } from './home/home.component';
     MatCardModule,*/
     AppRoutingModule,
     HttpClientModule,
-    ClarityModule
+    ClarityModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
