@@ -1,4 +1,4 @@
-import { UserIdentity } from './useridentity';
+import { UserIdentity } from 'app/domain/useridentity';
 
 export class Utility {
 

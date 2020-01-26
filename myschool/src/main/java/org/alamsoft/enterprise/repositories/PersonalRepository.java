@@ -9,6 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface PersonalRepository extends JpaRepository<UserIdentity, String> {
 	@Query("select a from UserIdentity a")
 	UserIdentity[] getAll();
-	
 	Optional<UserIdentity> findByUsername(String username);
 }

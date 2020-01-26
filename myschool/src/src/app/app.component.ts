@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 import { AuthenticationService } from './services/authentication.service';
-import { UserIdentity } from './useridentity';
+import { UserIdentity } from 'app/domain/useridentity';
 import { Router } from '@angular/router';
-import { RoleConstants } from './roleconstants';
-import { Utility } from './utility';
+import { RoleConstants } from 'app/domain/roleconstants';
+import { Utility } from 'app/utilities/utility';
 
 
 @Component({

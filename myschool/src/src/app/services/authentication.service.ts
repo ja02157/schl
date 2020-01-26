@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserIdentity } from '../useridentity';
+import { UserIdentity } from 'app/domain/useridentity';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -15,9 +15,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<UserIdentity>(JSON.parse(localStorage.getItem('currentUser')));
-        debugger
         this.currentUser = this.currentUserSubject.asObservable();
-        debugger
   }
   
   public get currentUserValue(): UserIdentity {
@@ -25,21 +23,16 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        debugger
         return this.http.post<any>(this.authenticationUrl, { username, password })
         .pipe(map(user => {
-            debugger
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-                debugger
                 return user;
-            }))
-        
-            
+            }))    
     }
 
     logout() {

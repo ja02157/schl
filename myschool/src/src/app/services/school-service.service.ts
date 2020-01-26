@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UserIdentity } from '../useridentity';
-import { Roles } from '../roles';
+import { UserIdentity } from 'app/domain/useridentity';
+import { Roles } from 'app/domain/roles';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root'
@@ -42,30 +41,19 @@ private dataSource = new BehaviorSubject(this.tobj);
   savePersonalInfo(adr: UserIdentity): Observable<any> {
   
   const body = adr;
-  
   const headers = new HttpHeaders().set('Content-Type','application/json');
-  
-  		alert("Hey Thanks : " + JSON.stringify(adr.userInformation.firstname));
   	   return this.http.post<any>(this.saveUrl, body, {headers: headers});      
 	}
-	
 	deletePersonalInfo(adr: UserIdentity): Observable<any> {
-  
   const body = adr;
   
   const headers = new HttpHeaders().set('Content-Type','application/json');
-  
-  		alert("Hey Thanks : " + JSON.stringify(adr.userInformation.firstname));
-  		
   	   return this.http.post<any>(this.deleteUrl, body, {headers: headers});      
 	}
-	
-  
-  getPersonalInfo(): Observable<UserIdentity[]>  {
-  
+	 
+  getPersonalInfo(): Observable<UserIdentity[]>  { 
   const body = {};
-  const headers = new HttpHeaders().set('Content-Type','application/json');
-  
+  const headers = new HttpHeaders().set('Content-Type','application/json'); 
   	    return this.http.get<UserIdentity[]>(this.listUrl);
 }
 
@@ -73,7 +61,6 @@ getRoles(): Observable<Roles[]>  {
   
   const body = {};
   const headers = new HttpHeaders().set('Content-Type','application/json');
-  
   	    return this.http.get<Roles[]>(this.listRolesUrl);
 }
   	   

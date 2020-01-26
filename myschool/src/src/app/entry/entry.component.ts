@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserIdentity } from '../useridentity';
-import { UserInformation } from '../userinformation';
+import { UserIdentity } from 'app/domain/useridentity';
+import { UserInformation } from 'app/domain/userinformation';
 import {Router} from '@angular/router';
-import { SchoolServiceService } from '../services/school-service.service';
+import { SchoolServiceService } from 'app/services/school-service.service';
 
 
 @Component({
@@ -24,9 +24,6 @@ addr: UserIdentity[] = [{
   }];
 
   constructor(private schoolServiceService: SchoolServiceService, private router: Router) { }
-  
-  
-
   ngOnInit() {
   this.getPersonalInfo();
   }
@@ -39,11 +36,9 @@ addr: UserIdentity[] = [{
   
   onAdd(): void {
   this.router.navigate(['/personalInfo']);
-    
   }
   
   onSelect(adr: UserIdentity): void {
-  
     this.selectedAdr = adr;
   }
   
@@ -56,9 +51,5 @@ addr: UserIdentity[] = [{
   onEdit(): void {
   this.schoolServiceService.updatedDataSelection(this.selectedAdr);
   this.router.navigate(['/personalInfo/selectedAdr']);
-    
   }
-  
-  
-
 }

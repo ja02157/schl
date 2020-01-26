@@ -13,7 +13,6 @@ public class ErrorAdvicer {
     }
 	
 	private ResponseEntity<String> error(HttpStatus status, Exception e) {
-        //log.error("Exception : ", e);
         return ResponseEntity.status(status).body(e.getMessage());
     }
 }

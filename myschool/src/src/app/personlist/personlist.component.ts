@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserIdentity } from '../useridentity';
-import { UserInformation } from 'app/userinformation';
+import { UserIdentity } from 'app/domain/useridentity';
+import { UserInformation } from 'app/domain/userinformation';
 import {Router} from '@angular/router';
-import { SchoolServiceService } from '../services/school-service.service';
+import { SchoolServiceService } from 'app/services/school-service.service';
 
 
 @Component({
@@ -28,7 +28,6 @@ addr: UserIdentity[] = [{
   constructor(private schoolServiceService: SchoolServiceService, private router: Router) {}
 
   ngOnInit() {
-  debugger
   this.getPersonalInfo();
   }
   
@@ -39,17 +38,13 @@ addr: UserIdentity[] = [{
   }
   
   onSelect(adr: UserIdentity): void {
-  
     this.selectedAdr = adr;
   }
   
   onDelete(adr: UserIdentity): void {
-  this.router.navigate(['/about']);
-   
-    
+  this.router.navigate(['/about']); 
   }
   onEdit(adr: UserIdentity): void {
     alert('how ho');
   }
-
 }

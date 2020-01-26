@@ -1,22 +1,6 @@
-
-    
-
-  <!-- 
-<ul class="addresses">
-  
-  <li *ngFor="let adr of addr"
-    [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">
-    {{adr.firstname}} {{adr.lastname}}
-  </li>
-</ul>
--->
- 
 <clr-datagrid>
-
-
     <clr-dg-column>First Name2</clr-dg-column>
-    <clr-dg-column>Last Name</clr-dg-column>
-    
+    <clr-dg-column>Last Name</clr-dg-column>  
   <clr-dg-row *clrDgItems="let adr of addr"
   [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
     <clr-dg-cell>{{adr.userInformation.firstname}}</clr-dg-cell>
@@ -38,8 +22,5 @@
     <clr-dg-cell>{{selectedAdr.userInformation.firstname}}</clr-dg-cell>
     <clr-dg-cell>{{selectedAdr.userInformation.lastname}}</clr-dg-cell>
   </clr-dg-row> 
-    
     <clr-dg-footer>Ha Ha Ha</clr-dg-footer>
 </clr-datagrid>
-
-

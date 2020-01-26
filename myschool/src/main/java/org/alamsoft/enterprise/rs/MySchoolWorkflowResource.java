@@ -44,28 +44,16 @@ public class MySchoolWorkflowResource {
 	public UserIdentity authenticate(@RequestBody Map<String, String> json) throws Error {
 		UserIdentity returnAddress=null;
 		UserIdentity address = personalInfoServicesImpl.getPersonalInfo(json.get("username"));
-		//
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(json.get("username"), json.get("password")));
 		ArrayList<String> rl=new ArrayList();
-		//rl.add(address.getUserInformation().getRole());
 		Iterator<UserRoles> iter = address.getUserRoles().iterator();
 		while (iter.hasNext()) {
 			rl.add(iter.next().getRole().getRoleName());
 		}
-		
 		String tokenx = jwtTokenProvider.createToken(json.get("username"), rl);
-		
-		//
-		//if (address.getPassword().equals(json.get("password"))) {
 			returnAddress = address;
-			//String token= "fake-jwt-token."+returnAddress.getRole();
-			//String token= tokenx+"."+returnAddress.getRole();
 			String token= tokenx;
 			returnAddress.setToken(token);
-		//} else {
-		//	throw new AuthenticationFailed("user id or password doesnt match");
-		//}
-		
 		return returnAddress;
 	}
 
@@ -74,7 +62,6 @@ public class MySchoolWorkflowResource {
 
 	{
 		personalInfoServicesImpl.savePersonalInfo(personalInfo);
-		//return personalInfo;
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -95,10 +82,8 @@ public class MySchoolWorkflowResource {
 	
 	@RequestMapping(value = "/listRoles", method = RequestMethod.GET)
 	public Roles[] getRoles()
-
 	{
 		Roles[] listRoles = rolesServicesImpl.getAllRoles();
 		return listRoles;
 	}
-
 }

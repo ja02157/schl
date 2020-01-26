@@ -8,8 +8,8 @@ import { PersonalInfoFormComponent }      from './personal-info-form/personal-in
 import { PersonlistComponent }      from './personlist/personlist.component';
 import { LoginComponent }      from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { Roles } from './roles';
-import { RoleConstants } from './roleconstants';
+import { Roles } from 'app/domain/roles';
+import { RoleConstants } from 'app/domain/roleconstants';
 
 const routes: Routes = [
    { path: '', component: HomeComponent, canActivate: [AuthGuard]},

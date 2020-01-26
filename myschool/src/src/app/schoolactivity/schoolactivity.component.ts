@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserIdentity } from '../useridentity';
+import { UserIdentity } from 'app/domain/useridentity';
 import { Router } from '@angular/router';
-import { RoleConstants } from '../roleconstants';
-import { AuthenticationService } from '../services/authentication.service';
-import { Utility } from '../utility';
-
+import { RoleConstants } from 'app/domain/roleconstants';
+import { AuthenticationService } from 'app/services/authentication.service';
+import { Utility } from 'app/utilities/utility';
 
 @Component({
   selector: 'app-schoolactivity',
@@ -14,21 +13,15 @@ import { Utility } from '../utility';
 export class SchoolactivityComponent implements OnInit {
 currentUser: UserIdentity;
 
-  constructor(
-        
+  constructor( 
         private router: Router,
         private authenticationService: AuthenticationService
-    ) { 
-        
+    ) {    
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
-
   ngOnInit() {
-  }
-    
-  
-  get isAdmin() { 
-               
+  }  
+  get isAdmin() {               
         //return this.currentUser && this.currentUser.role.indexOf(Role.Admin) !== -1;
         return this.currentUser && Utility.isRole(this.currentUser, RoleConstants.Admin);
     }
@@ -36,10 +29,8 @@ currentUser: UserIdentity;
   onTest(): void {
         console.log('Hi There');
 }
-
 logout() {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
-
 }
