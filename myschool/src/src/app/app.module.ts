@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-/*import { MatInputModule, MatButtonModule } from '@angular/material';
-import { MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';*/
 import { HttpClientModule }    from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -39,11 +37,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-/*    MatInputModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
-    MatCardModule,*/
     AppRoutingModule,
     HttpClientModule,
     ClarityModule,

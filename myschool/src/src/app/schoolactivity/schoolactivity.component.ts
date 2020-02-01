@@ -22,7 +22,6 @@ currentUser: UserIdentity;
   ngOnInit() {
   }  
   get isAdmin() {               
-        //return this.currentUser && this.currentUser.role.indexOf(Role.Admin) !== -1;
         return this.currentUser && Utility.isRole(this.currentUser, RoleConstants.Admin);
     }
   
