@@ -25,7 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	//boolean x = http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("ADMIN");
     	//Object b = http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/list/**").hasRole("USER");
-    	http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("ADMIN").and().apply(new JwtConfigurer(jwtTokenProvider));
+//    	http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("ADMIN").and().apply(new JwtConfigurer(jwtTokenProvider));
+    	http.csrf().disable().apply(new JwtConfigurer(jwtTokenProvider));
+
     	//http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/rs/list/**").hasRole("USER").anyRequest().authenticated();
     	//http.csrf().disable().authorizeRequests().and().apply(new JwtConfigurer(jwtTokenProvider));
 
