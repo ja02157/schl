@@ -1,6 +1,7 @@
 package org.alamsoft.enterprise.bootstrap;
 
 import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -17,22 +18,31 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("org.alamsoft.enterprise")
 @EnableJpaRepositories("org.alamsoft.enterprise.repositories")
+@EnableSwagger2
+
 
 @PropertySource("classpath:myschool.properties")
-public class MySchoolApplication extends WebMvcConfigurationSupport   {
-	@Bean
-	  public RequestMappingHandlerAdapter requestMappingHandlerAdapter()  {
-		  RequestMappingHandlerAdapter handlerAdapter = super.requestMappingHandlerAdapter();
-	    
-	    return handlerAdapter;
-	  }
+public class MySchoolApplication extends WebMvcConfigurerAdapter {
+  //extends WebMvcConfigurationSupport   {
+//	@Bean
+//	  public RequestMappingHandlerAdapter requestMappingHandlerAdapter()  {
+//		  RequestMappingHandlerAdapter handlerAdapter = super.requestMappingHandlerAdapter();
+//	    
+//	    return handlerAdapter;
+//	  }
 	
 	@Bean
 	//@ConfigurationProperties(prefix="app.datasource")
@@ -69,4 +79,34 @@ public class MySchoolApplication extends WebMvcConfigurationSupport   {
 	    txManager.setEntityManagerFactory(entityManagerFactory());
 	    return txManager;
 	  }
+	
+	@Bean
+    public Docket api() {
+        // @formatter:off
+        //Register the controllers to swagger
+        //Also it is configuring the Swagger Docket
+        return new Docket(DocumentationType.SWAGGER_2).select()
+                .apis(RequestHandlerSelectors.any())
+                //.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+                .paths(PathSelectors.any())
+                // .paths(PathSelectors.ant("/swagger2-demo"))
+                .build();
+        // @formatter:on
+    }
+	
+	 @Override
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) 
+	    {
+	        //enabling swagger-ui part for visual documentation
+	        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+	        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	    }
+//	
+//	@Bean
+//    public OpenAPI customOpenAPI() {
+//        return new OpenAPI()
+//                .components(new Components())
+//                .info(new Info().title("Contact Application API").description(
+//                        "This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."));
+//    }
 }

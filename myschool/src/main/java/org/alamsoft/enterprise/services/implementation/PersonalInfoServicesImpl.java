@@ -45,9 +45,10 @@ public class PersonalInfoServicesImpl {
 	
 	
 
-	public void deletePersonalInfo(UserIdentity address) {
+	public UserIdentity deletePersonalInfo(UserIdentity address) {
 		// address.setEmpid(24);
 		personalInfoRepository.delete(address);
+		return address;
 
 	}
 
