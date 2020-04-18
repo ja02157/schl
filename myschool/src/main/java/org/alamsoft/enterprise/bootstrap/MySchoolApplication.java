@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -35,7 +35,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @PropertySource("classpath:myschool.properties")
-public class MySchoolApplication extends WebMvcConfigurerAdapter {
+public class MySchoolApplication implements WebMvcConfigurer {
   //extends WebMvcConfigurationSupport   {
 //	@Bean
 //	  public RequestMappingHandlerAdapter requestMappingHandlerAdapter()  {
@@ -101,12 +101,6 @@ public class MySchoolApplication extends WebMvcConfigurerAdapter {
 	        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 	        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	    }
-//	
-//	@Bean
-//    public OpenAPI customOpenAPI() {
-//        return new OpenAPI()
-//                .components(new Components())
-//                .info(new Info().title("Contact Application API").description(
-//                        "This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."));
-//    }
+	
+
 }
