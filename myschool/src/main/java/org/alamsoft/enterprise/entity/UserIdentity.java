@@ -74,6 +74,7 @@ public class UserIdentity implements  UserDetails {
 		this.password = password;
 	}
 	
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> grantedAuths =

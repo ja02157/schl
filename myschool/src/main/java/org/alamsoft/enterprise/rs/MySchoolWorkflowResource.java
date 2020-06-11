@@ -65,11 +65,11 @@ public class MySchoolWorkflowResource {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public UserIdentity deletePersonalInfo(@RequestBody UserIdentity personalInfo)
+	public void deletePersonalInfo(@RequestBody UserIdentityVO personalInfo)
 
 	{
 		personalInfoServicesImpl.deletePersonalInfo(personalInfo);
-		return personalInfo;
+		
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

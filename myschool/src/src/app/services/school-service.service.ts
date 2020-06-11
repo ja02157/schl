@@ -19,7 +19,7 @@ private deleteUrl = '/myschool/rs/delete';
 editAddr: UserIdentity;
 
 tobj: UserIdentity = {
-    username: '',
+		username: '',
     userInformation: {
     firstname: '',
     lastname: ''
@@ -44,11 +44,10 @@ private dataSource = new BehaviorSubject(this.tobj);
   const headers = new HttpHeaders().set('Content-Type','application/json');
   	   return this.http.post<any>(this.saveUrl, body, {headers: headers});      
 	}
-	deletePersonalInfo(adr: UserIdentity): Observable<any> {
-  const body = adr;
-  
-  const headers = new HttpHeaders().set('Content-Type','application/json');
-       alert("delete "+this.deleteUrl); 
+	deletePersonalInfo(adr: UserIdentity) {
+    const body = adr;
+    const headers = new HttpHeaders().set('Content-Type','application/json');
+       alert("delete "+this.deleteUrl);
   	   return this.http.post<any>(this.deleteUrl, body, {headers: headers});      
 	}
 	 

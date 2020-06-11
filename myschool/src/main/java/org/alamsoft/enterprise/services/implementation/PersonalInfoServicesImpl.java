@@ -1,6 +1,7 @@
 package org.alamsoft.enterprise.services.implementation;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.alamsoft.enterprise.entity.UserIdentity;
@@ -45,10 +46,14 @@ public class PersonalInfoServicesImpl {
 	
 	
 
-	public UserIdentity deletePersonalInfo(UserIdentity address) {
+	public void deletePersonalInfo(UserIdentityVO address) {
 		// address.setEmpid(24);
-		personalInfoRepository.delete(address);
-		return address;
+		UserIdentity address1 = new UserIdentity();
+		address1.setUsername(address.getUsername());
+		address1.setUserInformation(address.getUserInformation());
+		Optional<UserIdentity> address2 = personalInfoRepository.findByUsername(address.getUsername());
+		personalInfoRepository.delete(address2.get());
+		//return address;
 
 	}
 
