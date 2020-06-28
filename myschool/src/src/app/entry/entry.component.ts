@@ -43,7 +43,7 @@ addr: UserIdentity[] = [{
   }
   
   onDelete(): void {
-  alert('delete being tried'+JSON.stringify(this.selectedAdr));
+  // alert('delete being tried'+JSON.stringify(this.selectedAdr));
     this.schoolServiceService.deletePersonalInfo(this.selectedAdr).subscribe(
     		() => this.ngOnInit()
     );

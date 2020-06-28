@@ -29,8 +29,10 @@ export class AppComponent {
     
     get isAdmin() {
     debugger
-        // return this.currentUser && this.currentUser.role === RoleConstants.Admin;
-        //return this.currentUser && this.currentUser.role === RoleConstants.Admin;
+        // return this.currentUser && this.currentUser.role ===
+		// RoleConstants.Admin;
+        // return this.currentUser && this.currentUser.role ===
+		// RoleConstants.Admin;
         return this.currentUser && Utility.isRole(this.currentUser, RoleConstants.Admin);
     }
     

@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, all, element, repeater } from 'protractor';
 
 export class PersonlistPage {
 
@@ -9,7 +9,6 @@ private credentias = {
   
   navigateTo() {
     return browser.get('/personlist');
-    expect(page.getParagraphText()).toEqual('Welcome to schoolUI!');
   }
   
   fillCredentials(credentias: any = this.credentias) {
@@ -17,10 +16,17 @@ private credentias = {
     element(by.name('password')).sendKeys(credentias.password);
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getParagraphText1() {
+      var organizations = element.all(by.id('organizations')).all(by.css('app-personlist.datagrid-cell'));
+      var firstOrg = organizations.get(0);
+      console.log(firstOrg.getText());
+      debugger;
   }
-  getFirstNameTextSummary() {
-	    return element(by.css('app-root h1')).getText();
+  getParagraphText() {
+	    return element(by.css('app-root h3')).getText().then(function (text) {
+	        console.log(text);
+	        debugger;
+	    });
+	    
 	  }
 }

@@ -20,52 +20,47 @@ public class PersonalInfoServicesImpl {
 	@Autowired
 	PersonalRepository personalInfoRepository;
 
-	public void savePersonalInfo(UserIdentityVO address) {
-		//UserRoles usrRole = 
+	public UserIdentity savePersonalInfo(UserIdentityVO address) {
+		UserIdentity userIdentity = toUserIdentity(address);
+		return personalInfoRepository.saveAndFlush(userIdentity);
+	}
+
+	public UserIdentity toUserIdentity(UserIdentityVO address) {
 		UserRolesVO[] arr = address.getUserRoles();
 		Set<UserRoles> set = new HashSet<UserRoles>();
 		for (UserRolesVO usrRole : arr) {
-			System.out.println(usrRole);
 			UserRoles userRoles = new UserRoles(usrRole.getUsername(), usrRole.getRole().getRoleId());
 			set.add(userRoles);
 		}
-		
-		UserIdentity address1 = new UserIdentity();
-		address1.setUsername(address.getUsername());
-		address1.setUserInformation(address.getUserInformation());
-		//address1.setUserRoles(set);
-		//UserRoles usrRole = new UserRoles(address.getUsername(), "ROLE_ADMIN");
-		//UserRoles usrRoleA = new UserRoles(address.getUsername(), "ROLE_USER");
-		//Set set = new HashSet();
-		//set.add(usrRole);
-		//set.add(usrRoleA);
-		address1.setUserRoles(set);
-		address1.setPassword("{noop}test");
-		personalInfoRepository.saveAndFlush(address1);
+
+		UserIdentity userIdentity = new UserIdentity();
+		userIdentity.setUsername(address.getUsername());
+		userIdentity.setUserInformation(address.getUserInformation());
+		userIdentity.setUserRoles(set);
+		userIdentity.setPassword("{noop}test");
+		return userIdentity;
 	}
 	
 	
 
 	public void deletePersonalInfo(UserIdentityVO address) {
-		// address.setEmpid(24);
-		UserIdentity address1 = new UserIdentity();
-		address1.setUsername(address.getUsername());
-		address1.setUserInformation(address.getUserInformation());
+		UserIdentity userIdentity = new UserIdentity();
+		userIdentity.setUsername(address.getUsername());
+		userIdentity.setUserInformation(address.getUserInformation());
 		Optional<UserIdentity> address2 = personalInfoRepository.findByUsername(address.getUsername());
 		personalInfoRepository.delete(address2.get());
-		//return address;
 
 	}
 
 	public void editPersonalInfo(UserIdentity address) {
-		//savePersonalInfo(address);
+		// savePersonalInfo(address);
 
 	}
 
 	public UserIdentity[] getAllPersonalInfo() {
 		return personalInfoRepository.getAll();
 	}
-	
+
 	public UserIdentity getPersonalInfo(String empId) {
 		return personalInfoRepository.findByUsername(empId).get();
 	}

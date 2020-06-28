@@ -45,6 +45,6 @@ addr: UserIdentity[] = [{
   this.router.navigate(['/about']); 
   }
   onEdit(adr: UserIdentity): void {
-    alert('how ho');
+    // alert('how ho'); 
   }
 }

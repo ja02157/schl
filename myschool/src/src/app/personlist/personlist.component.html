@@ -1,8 +1,9 @@
+<h3>List of student<h3>
 <clr-datagrid>
     <clr-dg-column>First Name2</clr-dg-column>
     <clr-dg-column>Last Name</clr-dg-column>  
   <clr-dg-row *clrDgItems="let adr of addr"
-  [class.selected]="adr === selectedAdr" (click)="onSelect(adr)">  
+  [class.selected]="adr === selectedAdr" (click)="onSelect(adr)"    id="organizations">  
     <clr-dg-cell>{{adr.userInformation.firstname}}</clr-dg-cell>
     <clr-dg-cell>{{adr.userInformation.lastname}}</clr-dg-cell>
  </clr-dg-row> 

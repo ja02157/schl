@@ -47,14 +47,14 @@ private dataSource = new BehaviorSubject(this.tobj);
 	deletePersonalInfo(adr: UserIdentity) {
     const body = adr;
     const headers = new HttpHeaders().set('Content-Type','application/json');
-       alert("delete "+this.deleteUrl);
+       // alert("delete "+this.deleteUrl);
   	   return this.http.post<any>(this.deleteUrl, body, {headers: headers});      
 	}
 	 
   getPersonalInfo(): Observable<UserIdentity[]>  { 
   const body = {};
   const headers = new HttpHeaders().set('Content-Type','application/json');
-         alert("list  "+this.listUrl); 
+        //  alert("list  "+this.listUrl); 
   	    return this.http.get<UserIdentity[]>(this.listUrl);
 }
 
@@ -62,7 +62,7 @@ getRoles(): Observable<Roles[]>  {
   
   const body = {};
   const headers = new HttpHeaders().set('Content-Type','application/json');
-        alert("list Role "+this.listRolesUrl);
+       // alert("list Role "+this.listRolesUrl);
   	    return this.http.get<Roles[]>(this.listRolesUrl);
 }
   	   
