@@ -10,7 +10,7 @@
 		<param name="maxFileSize" value="1MB" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="%d{MM/dd/yyyy HH:mm:ss}  [%t]:%c{5}.%M()%L %m%n" />
+				value="%d{MM/dd/yyyy HH:mm:ss}  [%t] - [%X{threadID}] - %c{5}.%M()%L %m%n " />
 		</layout>
 	</appender>
 	
@@ -18,13 +18,12 @@
         
         <layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="%d{MM/dd/yyyy HH:mm:ss}  [%t]:%c{5}.%M()%L %m%n" />
+				value="%d{MM/dd/yyyy HH:mm:ss}  [%t] - [%X{threadID}] - %c{5}.%M()%L %m%n " />
 		</layout>
     </appender>
 
 	<logger name="org.alamsoft.enterprise" additivity="false">
-		<level value="debug" />
-		<appender-ref ref="schoolapp_core_file" />
+		<level value="info" />
 		<appender-ref ref="consoleOut" />
 	</logger>
 	<root>
